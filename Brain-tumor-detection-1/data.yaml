@@ -1,0 +1,12 @@
+names:
+- tumor
+nc: 1
+roboflow:
+  license: CC BY 4.0
+  project: brain-tumor-detection-6n4sk
+  url: https://universe.roboflow.com/projettest/brain-tumor-detection-6n4sk/dataset/1
+  version: 1
+  workspace: projettest
+test: ../test/images
+train: Brain-tumor-detection-1/train/images
+val: Brain-tumor-detection-1/valid/images

@@ -1,0 +1,6 @@
+
+train: C:\Users\pasca\OneDrive\Documenten\brain-tumor\Brain-tumor-detection-1\train/images
+val: C:\Users\pasca\OneDrive\Documenten\brain-tumor\Brain-tumor-detection-1\valid/images
+
+nc: 2  # Number of classes (e.g., tumor, no tumor)
+names: ['tumor', 'no_tumor']  # Class names

@@ -1,26 +1,34 @@
 import os
-import glob
 from ultralytics import YOLO
+from roboflow import Roboflow
 
-# Load a model
-model = YOLO("best.pt")  # load a brain-tumor fine-tuned model
+# Load the YOLOv8 model (recommended for training)
+model = YOLO("weights/yolov8n.pt")  # Using a pretrained model
 
-# Construct the file pattern using os.path.join
-base_path = "assets/brain_tumor_dataset/yes"
-file_pattern = "*.jpg"
-image_path = os.path.join(base_path, file_pattern)
+# Set up the Roboflow project and download the dataset
+rf = Roboflow(api_key="lvJtfzYNSRQrGmcNtdUd")
+project = rf.workspace("workspace-hyza2").project("brain-tumor-detection-6n4sk")
+version = project.version(1)
+dataset = version.download("yolov8")
 
-# Find files matching the pattern
-image_files = glob.glob(image_path)
+# Verify the dataset directory
+dataset_dir = dataset.location
 
-# Verify the working directory
-current_working_directory = os.getcwd()
-print(f"Current working directory: {current_working_directory}")
+# Define the path to your dataset configuration file
+data_config_path = "brain-tumor.yaml"
 
-# Check if any image files were found
-if image_files:
-    # Inference using the model
-    results = model.predict(image_files[0])
-    print(results)
-else:
-    print("No image files found in the specified directory.")
+# Create brain-tumor.yaml file content with the correct paths
+yaml_content = f"""
+train: {os.path.join(dataset_dir, 'train/images')}
+val: {os.path.join(dataset_dir, 'valid/images')}
+
+nc: 2  # Number of classes (e.g., tumor, no tumor)
+names: ['tumor', 'no_tumor']  # Class names
+"""
+
+# Write the yaml content to brain-tumor.yaml
+with open(data_config_path, "w") as file:
+    file.write(yaml_content)
+
+# Train the model
+results = model.train(data=data_config_path, epochs=10, imgsz=640)
