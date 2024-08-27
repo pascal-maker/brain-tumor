@@ -1,0 +1,1 @@
+Hello this is my repo for brain-tumor detection please use your own api-key and if you would like to find the results for the tumor detection check runs/7. I would like to direct you to https://docs.ultralytics.com/datasets/detect/brain-tumor/#usage for brain-tumor-detection and https://github.com/facebookresearch/segment-anything-2 for using SAM2
