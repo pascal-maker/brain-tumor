@@ -1,6 +1,6 @@
-# Brain Tumor Segmentation with SAM2 and YOLOv8
+# Brain Tumor Segmentation with SAM2 
 
-This repository demonstrates how to perform brain tumor segmentation using the Segment Anything Model 2 (SAM2) and YOLOv8 for object detection.
+This repository demonstrates how to perform brain tumor segmentation using the Segment Anything Model 2 (SAM2) .
 
 ## Table of Contents
 1. [Requirements](#requirements)
@@ -155,10 +155,57 @@ save_video(output_video_path, video_segments, frame_names, video_dir)
 Results
 The final output will be a video file (segmented_output.mp4) where each frame has been segmented to highlight brain tumors. The segmentation results can also be visualized interactively within Jupyter Notebook.
 
-By following these steps, you can effectively perform brain tumor segmentation using SAM2 and YOLOv8. ```
+By following these steps, you can effectively perform brain tumor segmentation using SAM2 . ```
 
-Download README.md
-README
-.md
-5.4 KB ⇣
+
+
+Brain Tumor Detection using YOLOv8 and Roboflow
+This repository contains a Python script for training a YOLOv8 model on a brain tumor detection dataset using Roboflow.
+
+Table of Contents
+Prerequisites
+Installation
+Usage
+Dataset
+Training
+Results
+Prerequisites
+Before running the script, ensure you have the following installed:
+
+Python 3.7 or higher
+ultralytics library
+roboflow library
+You can install these libraries using pip:
+
+
+pip install ultralytics roboflow
+Installation
+Clone this repository to your local machine:
+
+
+git clone https://github.com/yourusername/brain-tumor-detection.git
+cd brain-tumor-detection
+Usage
+Run the script using Python:
+
+
+python train.py
+Dataset
+The dataset used in this project is obtained from Roboflow. The script sets up the Roboflow project and downloads the dataset. Ensure you replace "lvJtfzYNSRQrGmcNtdUd" with your actual Roboflow API key.
+
+Training
+The script trains the YOLOv8 model on the downloaded dataset. The training parameters include:
+
+Epochs: 10
+Image Size: 640x640 pixels
+The trained model will be saved in the runs/train/exp directory.
+
+Results
+After training, the script saves the results in the runs/train/exp/results.txt file. Additionally, it generates a TensorBoard log for visualizing training metrics.
+
+To view the TensorBoard logs, run:
+
+
+tensorboard --logdir runs/train/exp
+Then open your web browser and navigate to http://localhost:6006.
 
